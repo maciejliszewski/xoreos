@@ -178,6 +178,16 @@ Common::Matrix4x4 ModelNode::getAbsolutePosition() const {
 	return absolutePosition;
 }
 
+void ModelNode::getWorldPosition(float &x, float &y, float &z) const {
+	Common::Matrix4x4 pos = _model->_absolutePosition;
+
+	pos.transform(_absolutePosition);
+
+	x = pos.getX();
+	y = pos.getY();
+	z = pos.getZ();
+}
+
 uint16 ModelNode::getNodeNumber() const {
 	return _nodeNumber;
 }
