@@ -77,6 +77,9 @@ public:
 	/** Set the flag if the model has skinned animations. */
 	void setSkinned(bool skinned);
 
+	void show();
+	void hide();
+
 	/** Is that point within the model's bounding box? */
 	bool isIn(float x, float y) const;
 	/** Is that point within the model's bounding box? */
@@ -285,6 +288,8 @@ protected:
 	Shader::ShaderRenderable *_boundRenderable;
 
 private:
+	bool _needEvalLights;
+
 	bool _drawBound;
 	bool _drawSkeleton;
 	bool _drawSkeletonInvisible;
@@ -297,6 +302,8 @@ private:
 	float _animationLoopTime;   ///< The time the current loop of the current animation has played.
 
 	std::vector<ModelNode *> _animationNodeMap;
+
+	void evaluateLights();
 
 	/** Create the list of all state names. */
 	void createStateNamesList(std::list<Common::UString> *stateNames = 0);
